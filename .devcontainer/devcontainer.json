@@ -1,7 +1,7 @@
 // devcontainer.json
 {
   // A professional name for the dev container
-  "name": "Zentient.Templates Dev Container",
+  "name": "Zentient Framework Dev Container",
 
   // Use a .NET-specific image as the base to simplify the setup
   "image": "mcr.microsoft.com/devcontainers/dotnet:latest",
