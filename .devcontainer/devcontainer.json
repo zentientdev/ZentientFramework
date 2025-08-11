@@ -1,0 +1,51 @@
+// devcontainer.json
+{
+  // A professional name for the dev container
+  "name": "Zentient.Templates Dev Container",
+
+  // Use a .NET-specific image as the base to simplify the setup
+  "image": "mcr.microsoft.com/devcontainers/dotnet:latest",
+
+  // Explicitly set the remote user for security best practices
+  "remoteUser": "vscode",
+
+  // Install both .NET 8 and .NET 9 SDKs using the devcontainer feature
+  "features": {
+    "ghcr.io/devcontainers/features/dotnet:1": {
+      "version": "8.0.3, 9.0"
+    },
+    "ghcr.io/devcontainers/features/node:1": { "version": "lts" },
+    "ghcr.io/devcontainers/features/powershell:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/github-actions:1": {},
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+
+  // Ensure all necessary tools and project dependencies are installed after container creation
+  "postCreateCommand": "dotnet tool install -g dotnet-format coverlet.console reportgenerator docfx && dotnet restore && dotnet build",
+
+  // Customize the VS Code experience for a consistent development environment
+  "customizations": {
+    "vscode": {
+      // Configure the integrated terminal to use PowerShell by default
+      "settings": {
+        "terminal.integrated.shell.linux": "/usr/bin/pwsh",
+        "terminal.integrated.profiles.linux": {
+          "bash": {
+            "path": "/bin/bash"
+          },
+          "pwsh": {
+            "path": "/usr/bin/pwsh"
+          }
+        }
+      },
+      // Automatically install a standard set of extensions for the team
+      "extensions": [
+        "ms-dotnettools.csharp",
+        "ms-azuretools.vscode-docker",
+        "eamodio.gitlens",
+        "yzhang.markdown-all-in-one"
+      ]
+    }
+  }
+}
